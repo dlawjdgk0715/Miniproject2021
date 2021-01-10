@@ -11,7 +11,6 @@ function handleSubmit(event){
     paintGreetings(currentValue); 
     saveName(currentValue);
 };
-
 function saveName(text){
     localStorage.setItem(user,text);
 };
@@ -53,7 +52,7 @@ function loadName(){
 
 function init(){
     loadName();
-    makeTimeGreetings();
+    setInterval(makeTimeGreetings,2.16e+7);
 };
 
 init();
