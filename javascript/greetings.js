@@ -23,21 +23,44 @@ function askForName(){
 function makeTimeGreetings(){
     const date = new Date();
     const hour = date.getHours();
-    if (hour >= 6 && hour < 12){
-        return "🌞 Good morning";
+
+    /*모바일: mql - if부분 */
+    var mql = window.matchMedia("screen and (max-width: 500px)");
+
+    if (mql.matches) {
+        if (hour >= 6 && hour < 12){
+            return "🌞 Good morning 🌞";
+        }
+        else if(hour >= 12 && hour <18){
+            return "🧋 Good afternoon 🧋";
+        }
+        else{
+            return "🌜 Good evening 🌜";
+        }
+    } else {
+        if (hour >= 6 && hour < 12){
+            return "🌞 Good morning";
+        }
+        else if(hour >= 12 && hour <18){
+            return "🧋 Good afternoon";
+        }
+        else{
+            return "🌜 Good evening";
+        }
     }
-    else if(hour >= 12 && hour <18){
-        return "🧋 Good afternoon";
-    }
-    else{
-        return "🌜 Good evening";
-    }
+    
 };
 
 function paintGreetings(text){
     form.classList.remove(showing);
     greeting.classList.add(showing);
     greeting.innerText = `${makeTimeGreetings()} ${text}`;
+
+    /*모바일 버전에서는 인삿말(엔터) 사용자이름 으로 표시 */
+    var mql = window.matchMedia("screen and (max-width: 500px)");
+    if(mql.matches){
+        greeting.innerText = `${makeTimeGreetings()}\n${text}`;
+    }
 };
 
 function loadName(){
